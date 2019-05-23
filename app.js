@@ -7,6 +7,26 @@ const cors = require('cors')
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const passport = require('passport');
+//connect to database.
+const Sequelize = require('sequelize');
+const db = new Sequelize('database_development', 'root', '11111111', {
+  host: 'localhost',
+  dialect: 'mysql',
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
+});
+db.authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+// end connect.
 const app = express();
 require('dotenv').config()
 app.use(cors())
