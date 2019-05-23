@@ -4,9 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors')
-const session = require('express-session');
-const RedisStore = require('connect-redis')(session);
-const passport = require('passport');
 //connect to database.
 const Sequelize = require('sequelize');
 const db = new Sequelize('database_development', 'root', '11111111', {
@@ -30,17 +27,6 @@ db.authenticate()
 const app = express();
 require('dotenv').config()
 app.use(cors())
-
-//Express session
-app.use(session({//2
-  store: new RedisStore(),
-  secret:'secret',
-  saveUninitialized:true,
-  resave:true
- }));
- //Passport Init
- app.use(passport.initialize());//3
- app.use(passport.session());//4
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
