@@ -4,26 +4,15 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors')
-//connect to database.
-const Sequelize = require('sequelize');
-const db = new Sequelize('database_development', 'root', '11111111', {
-  host: 'localhost',
-  dialect: 'mysql',
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  }
-});
+//database
+const db = require('./lib/connect') 
 db.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
   })
   .catch(err => {
     console.error('Unable to connect to the database:', err);
-  });
-// end connect.
+});
 const app = express();
 require('dotenv').config()
 app.use(cors())
