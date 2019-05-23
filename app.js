@@ -5,14 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors')
 //database
-const db = require('./lib/connect') 
-db.authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-});
+
 const app = express();
 require('dotenv').config()
 app.use(cors())

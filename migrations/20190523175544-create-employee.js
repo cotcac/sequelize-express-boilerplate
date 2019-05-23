@@ -18,6 +18,15 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      companyId: {
+        type: Sequelize.INTEGER,
+        onDelete:'CASCADE',
+        references:{
+          model:'companies',
+          key:'id',
+          as:'companyId'
+        }
       }
     });
   },

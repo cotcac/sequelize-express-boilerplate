@@ -1,8 +1,8 @@
 module.exports = function(req, res){
-    const mdl = require('../../db/mdl_company');
+    const mdl = require('../../models');
     const id = req.params.id;
     if(!id) return res.send('No data');
-    mdl.destroy({where:{id:id}})
+    mdl.Company.destroy({where:{id:id}})
     .then(result=>{
         res.status(200).json(result);
     })

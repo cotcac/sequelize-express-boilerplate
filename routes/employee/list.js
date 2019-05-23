@@ -1,6 +1,8 @@
 module.exports = function(req, res){
     const mdl = require('../../models');
-    mdl.Company.findAll()
+    mdl.Employee.findAll({
+        include: [ {model: mdl.Company, attributes: ['name']} ]
+      })
     .then(data=>{
         res.status(200).json(data);
     })

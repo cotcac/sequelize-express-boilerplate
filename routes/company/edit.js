@@ -1,10 +1,10 @@
 module.exports = function(req, res){
-    const mdl = require('../../db/mdl_company');
+    const mdl = require('../../models');
     const id = req.params.id;
     if(!id) return res.send('No data');
     const body = req.body;
     if(!body.name) return res.send('No data');
-    mdl.update({name:body.name},{where:{id:id}})
+    mdl.Company.update({name:body.name},{where:{id:id}})
     .then(result=>{
         res.status(200).json(result);
     })
