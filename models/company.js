@@ -1,7 +1,13 @@
 'use strict';
+const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   const Company = sequelize.define('Company', {
-    name: DataTypes.STRING
+    id: {
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV1,
+      primaryKey: true
+    },
+    name: DataTypes.STRING,
   }, {});
   Company.associate = function(models) {
     // associations can be defined here

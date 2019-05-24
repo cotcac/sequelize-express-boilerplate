@@ -20,7 +20,14 @@ if (process.env.NODE_ENV === 'production') {
       dialect: 'mysql'
     });
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = new Sequelize(
+    'devdb',
+    'root',
+    'supersecret',
+    {
+      host: 'localhost',
+      dialect: 'mysql'
+    });
 }
 
 fs

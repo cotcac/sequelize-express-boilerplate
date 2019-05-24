@@ -2,9 +2,9 @@ const fs = require('fs');
 
 module.exports = {
   development: {
-    username: 'database_dev',
-    password: 'database_dev',
-    database: 'database_dev',
+    username: 'root',
+    password: 'supersecret',
+    database: 'devdb',
     host: '127.0.0.1',
     dialect: 'mysql'
   },
@@ -21,10 +21,5 @@ module.exports = {
     database: process.env.MYSQL_DATABASE,
     host: process.env.DATABASE_HOST,
     dialect: 'mysql',
-    dialectOptions: {
-      ssl: {
-        ca: fs.readFileSync(__dirname + '/mysql-ca-master.crt')
-      }
-    }
   }
 };
