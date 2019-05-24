@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    build: ./db
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      DATABASE_HOST: db
+    ports:
+      - "3306:3306"
+  api:
+    build: .
+    restart: always
+    environment:
+      NODE_ENV: production
+      DATABASE_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
