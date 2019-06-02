@@ -21,9 +21,9 @@ if (process.env.NODE_ENV === 'production') {
     });
 } else {
   sequelize = new Sequelize(
-    'devdb',
+    'company1',
     'root',
-    'supersecret',
+    '11111111',
     {
       host: 'localhost',
       dialect: 'mysql'
